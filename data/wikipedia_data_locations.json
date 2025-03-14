@@ -1,0 +1,5 @@
+{
+    "wikipedia-64":  "./wikipedia/blocksize_64",
+    "wikipedia-128": "./wikipedia/blocksize_128",
+    "wikipedia-256": "./wikipedia/blocksize_256"
+}

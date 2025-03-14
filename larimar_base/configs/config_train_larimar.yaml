@@ -1,0 +1,92 @@
+## MODEL
+model:
+  # Encoder
+  encoder_model_type: bert
+  encoder_model_name_or_path: bert-base-cased
+  cache_dir: '../cache'
+  load_pretrained: false
+
+  # Decoder
+  decoder_model_type: gpt2
+  decoder_model_name_or_path: gpt2
+
+  # Auto-encoder
+  latent_size: 768
+  do_lower_case: false
+  block_size: 64
+
+  # Memory
+  memory_size: 512
+  direct_writing: true
+  ordering: false
+  pseudoinverse_approx_step: 15
+  episode_sizes: [16]
+  observation_noise_std: 0.000001
+  identity: true
+  w_logvar_setting: 3
+  deterministic_w: false
+
+  # Training
+  learning_rate: 5e-5
+  adam_epsilon: 1e-8
+  warmup_steps: 0
+  weight_decay: 0.0
+  mlm: false
+  mlm_probability: 0.15
+  dim_target_kl: 0
+  length_weighted_loss: false
+  rec_strength: 1.0
+  ae_strength: 1.0
+  l2_strength: 0
+  decode_rec_strength: 0.0
+  beta: 0.5
+  use_beta_schedule: true
+  ratio_increase: 0.25
+  ratio_zero: 0.5
+  fb_mode: 1
+  optimizer: adamw  # or fusedadam or deepspeed
+
+  # Evaluation
+  bleu: false
+  ae_only: true
+  ae_read_write: true
+  num_samples: 100
+  read_iters: 1
+  perturb: ""
+
+  # Sampling
+  temperature: 1
+  top_k: 0
+  top_p: 1
+
+## DATA
+data:
+  train_data_file: '../data/wikipedia/train.txt'
+  eval_data_file: '../data/wikipedia/test.txt'
+  num_data_workers: 4
+  train_batch_size: 64
+  eval_batch_size: 64
+  max_seq_length: 512
+  batches_per_bucket: 100
+  use_labels: 0
+  dataset: 'Wikipedia'
+  use_philly: false  # action='store_true'
+
+trainer:
+  max_epochs: 4
+  limit_val_batches: 0
+  reload_dataloaders_every_n_epochs: 1 # to ensure reshuffling of data buckets
+  limit_val_batches: 0 # don't run eval during training
+  num_sanity_val_steps : 0 # don't run eval at the beginning
+  default_root_dir: '../train/larimar/checkpoints/bert-base-cased-gpt2-wiki'
+  callbacks:
+      class_path: 'lightning.pytorch.callbacks.ModelCheckpoint'
+      init_args:
+      #  every_n_epochs: 1
+      #  save_top_k: 3
+          monitor: train/LOSS
+  logger:
+      class_path: 'lightning.pytorch.loggers.TensorBoardLogger'
+      init_args:
+        save_dir: '../train/larimar'
+        name: ''

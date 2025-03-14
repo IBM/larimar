@@ -1,0 +1,6 @@
+{
+    "attribute_snippets": "https://rome.baulab.info/data/dsets/attribute_snippets.json",
+    "counterfactual": "https://rome.baulab.info/data/dsets/counterfact.json",
+    "idf": "https://rome.baulab.info/data/dsets/idf.npy",
+    "tfidf_vocab": "https://rome.baulab.info/data/dsets/tfidf_vocab.json"
+}
