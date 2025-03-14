@@ -18,11 +18,13 @@ python -m spacy download en_core_web_sm
 ```
 
 ## Use
-Single-fact editing demo notebook: `larimar_base/single_fact_editing_demo.ipynb`
+Single-fact editing demo notebook: `larimar_base/single_fact_editing_demo.ipynb`.
+
+Assumes a trained `larimar-1.3b` model checkpoint available as `../models/larimar-1.3b-c3.ckpt`; please see below.
 
 
 ## Train
-To train a `larimar-1.3b` model, first download and extract under `../data` [this dataset tarball](https://ibm.box.com/shared/static/00m2lawggdbb71x9ht1fdddzwss2y1wu.gz) and then: 
+To train a `larimar-1.3b` model, first download and extract under `../data` [this dataset tarball](https://ibm.box.com/shared/static/78ywty93bjyh1vxe2eqpxi434bhn3lil.gz) and then: 
 
 ```
 cd larimar_base/
