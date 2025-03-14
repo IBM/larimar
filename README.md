@@ -20,7 +20,7 @@ python -m spacy download en_core_web_sm
 ## Use
 Single-fact editing demo notebook: `larimar_base/single_fact_editing_demo.ipynb`.
 
-Assumes a trained `larimar-1.3b` model checkpoint available as `../models/larimar-1.3b-c3.ckpt`. Please see below.
+Assumes a trained `larimar-1.3b` model checkpoint available as `../models/larimar-1.3b-c3.ckpt`. Please see instructions below.
 
 
 ## Train
